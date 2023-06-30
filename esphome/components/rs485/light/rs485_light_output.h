@@ -23,11 +23,13 @@ class RS485LightOutput : public light::LightOutput, public RS485Device {
     void write_state(light::LightState *state) override {
       bool binary;
       state->current_values_as_binary(&binary);
-      if(binary == this->state_) return;
+      if (binary == this->state_)
+        return;
 
       write_with_header(binary ? this->get_command_on() : this->get_command_off());
       this->state_ = binary;
     }
+
     void set_light(light::LightState *light) { light_ = light; }
 
   protected:
