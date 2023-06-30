@@ -12,7 +12,7 @@ class RS485LightOutput : public light::LightOutput, public RS485Device {
     void publish(const uint8_t *data, const num_t len) override;
     bool publish(bool state) override { publish_state(state); return true; }
 
-    void set_light(light::LightState *light) { device_name_ = &light->get_name(); light_ = light; }
+    void set_light(light::LightState *light) { device_name_ = new std::string(light->get_name().to_string()); light_ = light; }
 
     light::LightTraits get_traits() override {
       auto traits = light::LightTraits();
