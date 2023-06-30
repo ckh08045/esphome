@@ -30,8 +30,6 @@ class RS485LightOutput : public light::LightOutput, public RS485Device {
       this->state_ = binary;
     }
 
-    void set_light(light::LightState *light) { light_ = light; }
-
   protected:
     bool state_{false};
     light::LightState *light_{nullptr};
